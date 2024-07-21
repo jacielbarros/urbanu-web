@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mt-4">Gerenciar Solicitações</h1>
+
+<form class="mb-4" method="get" action="{{ url_for('routes.solicitations') }}">
+    <div class="row g-3">
+        <div class="col-md-3">
+            <label for="filter_date" class="form-label">Data:</label>
+            <input type="date" name="filter_date" id="filter_date" class="form-control" value="{{ request.args.get('filter_date', '') }}">
+        </div>
+        <div class="col-md-3">
+            <label for="filter_name" class="form-label">Nome:</label>
+            <input type="text" name="filter_name" id="filter_name" class="form-control" value="{{ request.args.get('filter_name', '') }}">
+        </div>
+        <div class="col-md-3">
+            <label for="filter_status" class="form-label">Status:</label>
+            <select name="filter_status" id="filter_status" class="form-select">
+                <option value="">Todos</option>
+                {% for status in solicitation_statuses %}
+                    <option value="{{ status.id }}" {% if request.args.get('filter_status') == status.id %}selected{% endif %}>{{ status.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Protocolo</th>
+            <th scope="col">Data</th>
+            <th scope="col">Nome do Solicitante</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for solicitation in solicitations %}
+        <tr>
+            <td>{{ solicitation.protocol }}</td>
+            <td>{{ solicitation.timestamp.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>{{ solicitation.user.full_name }}</td>
+            <td>{{ solicitation.status.name }}</td>
+            <td>
+                <a href="{{ url_for('routes.view_solicitation', solicitation_id=solicitation.id) }}" class="btn btn-primary btn-sm">Visualizar</a>
+                <a href="{{ url_for('routes.update_solicitation', solicitation_id=solicitation.id) }}" class="btn btn-warning btn-sm">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('routes.admin') }}" class="btn btn-secondary mt-3">Voltar</a>
+<br>
+<br>
+<a href="{{ url_for('routes.logout') }}">Logout</a>
+{% endblock %}

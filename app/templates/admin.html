@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Administração</h2>
+  
+  <div>
+    <h3>Visão Geral</h3>
+    <p>Solicitações Cadastradas: {{ total_solicitacoes }}</p>
+    <p>Solicitações Concluídas: {{ total_concluidas }}</p>
+  </div>
+  
+  <div>
+    <h3>Menu</h3>
+    <ul>
+      <li><a href="{{ url_for('routes.solicitations') }}">Gerenciar Solicitações</a></li>
+      {% if current_user.user_type == 'master' or current_user.user_type == 'admin' %}
+        <li><a href="{{ url_for('routes.admin_register') }}">Cadastrar novo usuário</a></li>
+        <li><a href="{{ url_for('routes.users') }}">Gerenciar Usuários</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <br><br>
+  <a href="{{ url_for('routes.logout') }}">Logout</a>
+{% endblock %}

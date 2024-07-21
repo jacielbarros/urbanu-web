@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Autentique-se</h2>
+    <form method="post" action="{{ url_for('routes.login_user_route') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.cpf.label }}<br>
+            {{ form.cpf(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.remember_me() }} {{ form.remember_me.label }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p>Ainda não possui cadastro? <a href="{{ url_for('routes.register') }}">Cadastre-se aqui.</a>.</p> 
+{% endblock %}

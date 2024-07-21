@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Autentique-se como Admin/Atendente</h2>
+    <form method="post" action="{{ url_for('routes.login_admin_route') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.cpf.label }}<br>
+            {{ form.cpf(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.remember_me() }} {{ form.remember_me.label }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

@@ -1,0 +1,8 @@
+# flask shell
+
+from app import db
+from app.models import User
+master_user = User(cpf='00000000000', full_name='Master User', email='master@example.com', mobile_number='0000000000', user_type='master')
+master_user.set_password('password')
+db.session.add(master_user)
+db.session.commit()

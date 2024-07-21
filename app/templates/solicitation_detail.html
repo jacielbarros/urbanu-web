@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Solicitação {{ solicitation.protocol }}</h1>
+  <p><strong>Título:</strong> {{ solicitation.title }}</p>
+  <p><strong>Descrição:</strong> {{ solicitation.description }}</p>
+  <p><strong>CEP:</strong> {{ solicitation.cep }}</p>
+  <p><strong>Logradouro:</strong> {{ solicitation.logradouro }}</p>
+  <p><strong>Bairro:</strong> {{ solicitation.bairro }}</p>
+  <p><strong>Cidade:</strong> {{ solicitation.cidade }}</p>
+  <p><strong>UF:</strong> {{ solicitation.uf }}</p>
+  <p><strong>Data:</strong> {{ solicitation.timestamp.strftime('%d/%m/%Y %H:%M') }}</p>
+  <p><strong>Status:</strong> {{ solicitation.status.name }}</p>
+  <p><strong>Observação:</strong> {{ solicitation.observation }}</p>
+  {% if solicitation.image_path %}
+    <p><strong>Imagem:</strong><br><img src="{{ url_for('static', filename='uploads/' ~ solicitation.image_path) }}" alt="Solicitação Imagem"></p>
+  {% else %}
+    <p><strong>Imagem:</strong> Não há imagem carregada para esta solicitação.</p>
+  {% endif %}
+  <br><br>
+  <a href="{{ url_for('routes.solicitante_home') }}">Voltar</a>
+{% endblock %}

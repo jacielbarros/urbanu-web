@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if current_user.is_authenticated %}
+    <h1>Seja bem-vindo, {{ current_user.full_name.split()[0].title() }}!</h1>
+    <p>Aqui você pode gerenciar suas solicitações.</p>
+    <br>
+    <a href="{{ url_for('routes.solicitante_home') }}">Solicitações</a><br><br>
+    <a href="{{ url_for('routes.logout') }}">Logout</a>
+    <div style="position: absolute; top: 10px; right: 10px;">
+      <a href="{{ url_for('routes.login_admin_route') }}">Admin?</a>
+    </div>
+  {% else %}
+    <h1>Bem-vindo ao Urbanu</h1>
+    <p>Aqui você poderá cadastrar e acompanhar suas solicitações.</p>
+    <p>Autentique-se para fazer a sua solicitação. É rápido e fácil.</p>
+    <a href="{{ url_for('routes.login_user_route') }}">Acessar Como Solicitante</a>
+    <div style="position: absolute; top: 10px; right: 10px;">
+      <a href="{{ url_for('routes.login_admin_route') }}">Admin?</a>
+    </div>
+  {% endif %}
+{% endblock %}

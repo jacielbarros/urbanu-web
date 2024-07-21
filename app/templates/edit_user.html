@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Editar Usuário</h2>
+  <form method="post" action="{{ url_for('routes.edit_user', user_id=user.id) }}">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.cpf.label }}<br>
+      {{ form.cpf(size=32) }}<br>
+    </p>
+    <p>
+      {{ form.full_name.label }}<br>
+      {{ form.full_name(size=32) }}<br>
+    </p>
+    <p>
+      {{ form.email.label }}<br>
+      {{ form.email(size=32) }}<br>
+    </p>
+    <p>
+      {{ form.mobile_number.label }}<br>
+      {{ form.mobile_number(size=32) }}<br>
+    </p>
+    <p>
+      {{ form.user_type.label }}<br>
+      {{ form.user_type() }}<br>
+    </p>
+    <p>
+      {{ form.password.label }}<br>
+      {{ form.password(size=32) }}<br>
+    </p>
+    <p>
+      {{ form.password2.label }}<br>
+      {{ form.password2(size=32) }}<br>
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
+{% endblock %}

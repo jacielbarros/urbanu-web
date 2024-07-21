@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Nova Solicitação</h2>
+  <form method="post" action="{{ url_for('routes.new_solicitation') }}">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.title.label }}<br>
+      {{ form.title(size=32) }}
+    </p>
+    <p>
+      {{ form.description.label }}<br>
+      {{ form.description(rows=4, cols=32) }}
+    </p>
+    <p>
+      {{ form.cep.label }}<br>
+      {{ form.cep(size=32) }}
+    </p>
+    <p>
+      {{ form.logradouro.label }}<br>
+      {{ form.logradouro(size=32) }}
+    </p>
+    <p>
+      {{ form.bairro.label }}<br>
+      {{ form.bairro(size=32) }}
+    </p>
+    <p>
+      {{ form.cidade.label }}<br>
+      {{ form.cidade(size=32) }}
+    </p>
+    <p>
+      {{ form.uf.label }}<br>
+      {{ form.uf(size=2) }}
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
+  <br><br>
+  <a href="{{ url_for('routes.solicitante_home') }}">Voltar</a>
+{% endblock %}
