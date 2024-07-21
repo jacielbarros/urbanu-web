@@ -43,6 +43,18 @@ pip install -r requirements.txt
    
   flask run
 
+A aplicação estará disponível em http://127.0.0.1:5000.
+
+# Estrutura do projeto
+
+  * app/ - Diretório principal da aplicação Flask.
+  * app/templates/ - Arquivos HTML.
+  * app/static/ - Arquivos estáticos (CSS, JavaScript, imagens).
+  * app/forms.py - Formulários Flask-WTF.
+  * app/models.py - Modelos SQLAlchemy.
+  * app/routes.py - Rotas da aplicação.
+  * config.py - Configurações da aplicação.
+  * run.py - Script para executar a aplicação.
 
 # Contribuição
 
